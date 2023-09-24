@@ -1,34 +1,43 @@
 import java.util.ArrayList;
 
-public class TaskManager {
+public class TaskManager implements TaskManagerInterface {
 
-    private final ArrayList activeTasks = new ArrayList<Task>();
+
+    private final ArrayList<Task> taskInMemory = new ArrayList<Task>();
+
+    @Override
     public void appendTask(Task createdTask) {
-        activeTasks.add(createdTask);
+        taskInMemory.add(createdTask);
     }
 
+    @Override
     public int showLength(){
-        return activeTasks.size();
+        return taskInMemory.size();
     }
 
+    @Override
     public boolean isFinished(int position) {
-        if (position >= 0 && position < activeTasks.size()) {
-            Task task = (Task) activeTasks.get(position);
+        if (position >= 0 && position < taskInMemory.size()) {
+            Task task = taskInMemory.get(position);
             return task.getIsFinished();
         }
-        return false;
+        return true;
     }
+
+    @Override
     public void showTasks(){
         System.out.println("Active Tasks:");
-        for (int i = 0; i < activeTasks.size(); i++) {
-            System.out.println((i + 1) + ". " + activeTasks.get(i));
+        for (int i = 0; i < taskInMemory.size(); i++) {
+            System.out.println((i + 1) + ". " + taskInMemory.get(i));
         }
     }
 
+
+    @Override
     public void deleteTask(int taskIndex){
         try {
-            if (taskIndex >= 0 && taskIndex < activeTasks.size()) {
-                activeTasks.remove(taskIndex);
+            if (taskIndex >= 0 && taskIndex < taskInMemory.size()) {
+                taskInMemory.remove(taskIndex);
                 System.out.println("Task at index " + taskIndex + 1 + " deleted.");
             } else {
                 System.out.println("Invalid task index. No task deleted.");
@@ -39,10 +48,12 @@ public class TaskManager {
 
     }
 
+
+    @Override
     public void finishTask(int taskIndex, float completionTime){
         try {
-            if (taskIndex >= 0 && taskIndex < activeTasks.size()) {
-                Task task = (Task) activeTasks.get(taskIndex);
+            if (taskIndex >= 0 && taskIndex < taskInMemory.size()) {
+                Task task = taskInMemory.get(taskIndex);
                 task.finish(completionTime);
                 System.out.println("Task at index " + taskIndex + 1 + " finished.");
             } else {

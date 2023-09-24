@@ -12,11 +12,11 @@ public class Task {
 
     private boolean isFinished;
 
-    private LocalDate deadline;
+    private final LocalDate deadline;
 
     private LocalDate finishedAt;
 
-    private LocalDate createdAt;
+    private final LocalDate createdAt;
 
 
     public Task(String name, String type, String description, float estimatedTime, int year, int month, int day) {
@@ -27,6 +27,19 @@ public class Task {
         this.isFinished = false;
         this.deadline = LocalDate.of(year, month, day);
         this.createdAt = LocalDate.now();
+    }
+
+    public Task(String name, TaskTypes type, String description, float estimatedTime, float completionTime, boolean isFinished, LocalDate deadline, LocalDate finishedAt, LocalDate createdAt) {
+        this.name = name;
+        this.type = type;
+        this.description = description;
+        this.estimatedTime = estimatedTime;
+        this.completionTime = completionTime;
+        this.isFinished = isFinished;
+        this.deadline = deadline;
+        this.finishedAt = finishedAt;
+        this.createdAt = createdAt;
+        // todo read from db
     }
 
     private TaskTypes convertStringToTaskType(String type) {
