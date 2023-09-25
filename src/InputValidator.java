@@ -12,8 +12,13 @@ public class InputValidator {
 
     public boolean isTypeCorrect(String type){
         String typeUpper = type.toUpperCase();
-        return Arrays.stream(TaskTypes.values())
-                .anyMatch(taskType -> taskType.name().equals(typeUpper));
+        TaskTypes[] values = TaskTypes.values();
+        for (TaskTypes taskType : values) {
+            if (taskType.name().equals(typeUpper)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public boolean isDescriptionCorrect(String description){
@@ -73,16 +78,12 @@ public class InputValidator {
     }
 
     public boolean isNumberInteger(String input) {
-        if (input != null && !input.isEmpty()) {
             try {
                 int number = Integer.parseInt(input);
                 return number > 0;
             } catch (NumberFormatException e) {
                 return false;
             }
-        }
-        return false;
     }
-
 
 }

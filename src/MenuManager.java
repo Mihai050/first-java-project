@@ -4,12 +4,12 @@ public class MenuManager {
 
     private final InputHandler inputHandler;
     private final InputValidator inputValidator;
-    private final TaskManager taskManager;
+    private final TaskManagerInterface taskManager;
 
 
 
 
-    public MenuManager(InputHandler inputHandler, InputValidator inputValidator, TaskManager taskManager) {
+    public MenuManager(InputHandler inputHandler, InputValidator inputValidator, TaskManagerInterface taskManager) {
         this.inputHandler = inputHandler;
         this.inputValidator = inputValidator;
         this.taskManager = taskManager;

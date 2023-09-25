@@ -6,7 +6,7 @@ public class Main {
 
         InputValidator inputValidator = new InputValidator();
 
-        TaskManager taskManager = new TaskManager();
+        TaskManagerInterface taskManager = new TaskManager();
 
         MenuManager menuManager = new MenuManager(inputHandler, inputValidator, taskManager);
 
